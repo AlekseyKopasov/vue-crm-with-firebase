@@ -19,7 +19,7 @@
               :key="cur"
               >
               <td>{{ cur }}</td>
-              <td>{{ rates[cur].toFixed(2) }}</td>
+              <td>{{ quotes[cur].toFixed(2) }}</td>
               <td>{{ date | date('date') }}</td>
             </tr>
           </tbody>
@@ -31,9 +31,9 @@
 
 <script>
 export default {
-  props: ['rates', 'date'],
+  props: ['quotes', 'date'],
   data: () => ({
-    currencies: ['RUB', 'USD', 'EUR']
+    currencies: ['USDRUB', 'USDUSD', 'USDEUR']
   })
 }
 </script>
