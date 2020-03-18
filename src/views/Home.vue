@@ -14,11 +14,11 @@
 
     <div v-else class="row">
       <HomeBill
-        :quotes="currency.quotes"
+        :rates="currency.rates"
       />
 
       <HomeCurrency
-        :quotes="currency.quotes"
+        :rates="currency.rates"
         :date="currency.date"
       />
     </div>

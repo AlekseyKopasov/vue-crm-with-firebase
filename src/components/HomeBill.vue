@@ -17,19 +17,18 @@
 
 <script>
 export default {
-  props: ['quotes'],
+  props: ['rates'],
   data: () => ({
-    currencies: ['USDRUB', 'USDUSD', 'USDEUR']
+    currencies: ['RUB', 'USD', 'EUR']
   }),
   computed: {
     base () {
-      return this.$store.getters.info.bill / (this.quotes.USDRUB / this.quotes.USDUSD)
+      return this.$store.getters.info.bill / (this.rates.RUB / this.rates.USD)
     }
   },
   methods: {
     getCurrency (currency) {
-      console.log(Math.floor(this.base * this.quotes[currency]))
-      return Math.floor(this.base * this.quotes[currency])
+      return Math.floor(this.base * this.rates[currency])
     }
   }
 }

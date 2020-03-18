@@ -5,15 +5,25 @@
         <h4>Создать</h4>
       </div>
 
-      <form>
+      <form @submit.prevent="submitHandler">
         <div class="input-field">
-          <input id="name" type="text" />
+          <input
+            id="name"
+            type="text"
+            v-model="title"
+            :class="{ invalid: $v.title.dyrty && !$v.title.required }"
+            />
           <label for="name">Название</label>
-          <span class="helper-text invalid">Введите название</span>
+          <span
+            v-if="$v.title.dyrty && !$v.title.required"
+            class="helper-text invalid"
+            >
+            Введите название категории
+          </span>
         </div>
 
         <div class="input-field">
-          <input id="limit" type="number" />
+          <input id="limit" type="number" v-model="limit" />
           <label for="limit">Лимит</label>
           <span class="helper-text invalid">Минимальная величина</span>
         </div>
@@ -28,7 +38,22 @@
 </template>
 
 <script>
-export default {}
+import { required, minValue } from 'vuelidate/lib/validators'
+
+export default {
+  data: () => ({
+    title: '',
+    limit: 1
+  }),
+  validations: {
+    title: { required },
+    limit: { minValue: minValue(1) }
+  },
+  methods: {
+    submitHandler () {
+    }
+  }
+}
 </script>
 
 <style>
