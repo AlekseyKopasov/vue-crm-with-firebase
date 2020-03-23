@@ -5,6 +5,7 @@
     </div>
 
     <Loader v-if="loading"/>
+
     <p v-else-if="!categories.length" class="center">
       Категорий пока нет.
         <router-link to="/categories">
@@ -59,8 +60,9 @@
             :class="{ invalid: $v.amount.$dirty && !$v.amount.minValue }"
         >
         <label for="amount">Сумма</label>
-         <span class="helper-text invalid"
+         <span
             v-if="$v.amount.$dirty && !$v.amount.minValue"
+            class="helper-text invalid"
             >
             Минимальное значение {{ $v.amount.$params.minValue.min }}
           </span>
@@ -75,7 +77,7 @@
         >
         <label for="description">Описание</label>
         <span
-            v-if="$v.description.dirty && !$v.description.required"
+            v-if="$v.description.$dirty && !$v.description.required"
             class="helper-text invalid"
             >
             Введите описание
@@ -154,6 +156,10 @@ export default {
             : this.info.bill - this.amount
 
           await this.$store.dispatch('uodateInfo', { bill })
+          this.$message('Запись успешно создана')
+          this.$v.$reset()
+          this.amount = 1
+          this.description = ''
         } catch (e) {}
       } else {
         this.$message(`Недостаточно средств на счете ( ${this.amount - this.info.bill})`)
