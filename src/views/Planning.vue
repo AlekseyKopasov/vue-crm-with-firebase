@@ -5,7 +5,9 @@
       <h4>12 212</h4>
     </div>
 
-    <section>
+    <Loader v-if="loading" />
+
+    <section v-else>
       <div>
         <p>
           <strong>Девушка:</strong>
@@ -21,3 +23,19 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'planning',
+  data: () => ({
+    loading: true,
+    categories: []
+  }),
+  async mounded () {
+    // const records = await this.$store.dispatch('fetchRecords')
+    // const categories = await this.$store.dispatch('fetchCategories')
+
+    this.loading = false
+  }
+}
+</script>
