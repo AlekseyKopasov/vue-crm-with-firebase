@@ -2,10 +2,17 @@
   <div>
     <div class="page-title">
       <h3>Планирование</h3>
-      <h4>12 212</h4>
+      <h4>{{ info.bill | currency('RUB') }}</h4>
     </div>
 
     <Loader v-if="loading" />
+
+    <p v-else-if="!categories.length" class="center">
+      Категорий пока нет.
+        <router-link to="/categories">
+          Создать новую категорию
+        </router-link>
+    </p>
 
     <section v-else>
       <div>
@@ -25,13 +32,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'planning',
   data: () => ({
     loading: true,
     categories: []
   }),
-  async mounded () {
+  computed: {
+    ...mapGetters(['info'])
+  },
+  async mounted () {
     // const records = await this.$store.dispatch('fetchRecords')
     // const categories = await this.$store.dispatch('fetchCategories')
 
