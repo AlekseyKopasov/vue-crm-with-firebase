@@ -23,7 +23,7 @@ export default {
   }),
   computed: {
     base () {
-      return this.$store.getters.info.bill / (this.rates.RUB / this.rates.USD)
+      return this.$store.getters.info.bill / (this.rates.RUB / this.rates.EUR)
     }
   },
   methods: {
