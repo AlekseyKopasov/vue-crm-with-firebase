@@ -5,9 +5,9 @@
       <div class="breadcrumb-wrap">
         <router-link
           to="/history"
-          class="breadcrumb">История</router-link>
+          class="breadcrumb">{{ 'History_Headline' | localize }}</router-link>
         <a @click.prevent class="breadcrumb">
-          {{ record.type === 'income' ? 'Доход' : 'Расход' }}
+          {{ record.type === 'income' ? localize('Income') : localize('Outcome') }}
         </a>
       </div>
       <div class="row">
@@ -22,9 +22,9 @@
             <div
               class="card-content white-text"
               >
-              <p>Описание: {{ record.description }}</p>
-              <p>Сумма: {{ record.amount | currency }}</p>
-              <p>Категория: {{ record.categoryName }}</p>
+              <p>{{ 'Description' | localize }}: {{ record.description }}</p>
+              <p>{{ 'Amount' | localize }}: {{ record.amount | currency }}</p>
+              <p>{{ 'Category' | localize }}: {{ record.categoryName }}</p>
 
               <small>{{ record.date | date('datetime') }}</small>
             </div>
@@ -33,18 +33,25 @@
       </div>
     </div>
     <p v-else class="center">
-      Запись с id=<strong>{{ this.$route.params.id }}</strong>
-     не найдена.</p>
+      {{ 'Details-ErrorId' | localize }}=<strong>{{ this.$route.params.id }}</strong>
+     {{ 'Details-ErrorNotFound' | localize }}.</p>
   </div>
 </template>
 
 <script>
+import localizeFilter from '@/filters/localize.filter'
+
 export default {
   name: 'detail',
   data: () => ({
     record: null,
     loading: true
   }),
+  methods: {
+    localize (type) {
+      return localizeFilter(type)
+    }
+  },
   async mounted () {
     const id = this.$route.params.id
     const record = await this.$store.dispatch('fetchRecordById', id)

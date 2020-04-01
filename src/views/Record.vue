@@ -155,7 +155,7 @@ export default {
             ? this.info.bill + this.amount
             : this.info.bill - this.amount
 
-          await this.$store.dispatch('uodateInfo', { bill })
+          await this.$store.dispatch('updateInfo', { bill })
           this.$message('Запись успешно создана')
           this.$v.$reset()
           this.amount = 1

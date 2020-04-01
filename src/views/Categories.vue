@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{ 'Category_Headline' | localize }}</h3>
     </div>
     <Loader v-if="loading"/>
     <section v-else>
