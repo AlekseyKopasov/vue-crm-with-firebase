@@ -13,8 +13,8 @@
         </div>
       </main>
 
-      <div class="fixed-action-btn">
-        <router-link class="btn-floating btn-large blue" to="/record" v-tooltip="'Создать новую запись'">
+      <div class="fixed-action-btn" :key="locale">
+        <router-link class="btn-floating btn-large blue" to="/record" v-tooltip="localize('Create_NewRecord')">
           <i class="large material-icons">add</i>
         </router-link>
       </div>
@@ -26,6 +26,7 @@
 import Navbar from '@/components/app/Navbar'
 import Sidebar from '@/components/app/Sidebar'
 import messages from '@/utils/messages'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'main-layout',
@@ -49,6 +50,11 @@ export default {
     },
     locale () {
       return this.$store.getters.info.locale
+    }
+  },
+  methods: {
+    localize (type) {
+      return localizeFilter(type)
     }
   },
   watch: {
