@@ -43,6 +43,9 @@ import M from 'materialize-css/dist/js/materialize.min'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
+  metaInfo: {
+    title: 'Profile'
+  },
   data: () => ({
     name: '',
     isRuLocale: true

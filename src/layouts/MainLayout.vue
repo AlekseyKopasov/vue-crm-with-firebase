@@ -13,7 +13,7 @@
         </div>
       </main>
 
-      <div class="fixed-action-btn" :key="locale">
+      <div class="fixed-action-btn" :key="!locale">
         <router-link class="btn-floating btn-large blue" to="/record" v-tooltip="localize('Create_NewRecord')">
           <i class="large material-icons">add</i>
         </router-link>
